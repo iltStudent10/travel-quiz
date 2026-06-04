@@ -3,19 +3,55 @@
 }
 
 .app-shell {
+  position: relative;
+  overflow: hidden;
   display: grid;
   min-height: 100vh;
   place-items: center;
   padding: 24px;
+  background:
+    radial-gradient(circle at 10% 20%, color-mix(in oklab, var(--accent) 20%, transparent) 0%, transparent 30%),
+    radial-gradient(circle at 90% 10%, color-mix(in oklab, #22d3ee 24%, transparent) 0%, transparent 34%),
+    radial-gradient(circle at 80% 90%, color-mix(in oklab, #34d399 16%, transparent) 0%, transparent 30%);
+}
+
+.app-shell::before,
+.app-shell::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  border-radius: 999px;
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.app-shell::before {
+  width: 280px;
+  height: 280px;
+  top: -90px;
+  left: -60px;
+  background: color-mix(in oklab, var(--accent) 30%, transparent);
+}
+
+.app-shell::after {
+  width: 220px;
+  height: 220px;
+  bottom: -70px;
+  right: -20px;
+  background: color-mix(in oklab, #22d3ee 30%, transparent);
 }
 
 .card {
-  background: white;
-  border-radius: 20px;
+  position: relative;
+  z-index: 1;
+  background: color-mix(in oklab, var(--bg) 92%, white);
+  border: 1px solid color-mix(in oklab, var(--border) 75%, var(--accent) 25%);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
   padding: 32px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow);
   width: 100%;
-  max-width: 700px;
+  max-width: 720px;
 }
 
 h1, h2, h3 {
@@ -28,56 +64,97 @@ h1 {
   text-align: center;
   margin-bottom: 16px;
   word-break: break-word;
+  text-wrap: balance;
 }
 
 .options {
   display: grid;
-  gap: 12px;
-  margin-top: 20px;
+  gap: 14px;
+  margin-top: 22px;
 }
 
 .option-btn, .primary-btn {
-  border: none;
-  border-radius: 12px;
+  border: 1px solid transparent;
+  border-radius: 14px;
   padding: 14px 18px;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.15s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
 }
 
 .option-btn {
-  background: #e0f2fe;
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklab, var(--accent) 14%, var(--bg)),
+    color-mix(in oklab, #22d3ee 12%, var(--bg))
+  );
+  color: var(--text-h);
+  border-color: color-mix(in oklab, var(--accent-border) 65%, var(--border));
 }
 
 .option-btn:hover, .primary-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 20px color-mix(in oklab, var(--accent) 20%, transparent);
+}
+
+.option-btn:focus-visible,
+.primary-btn:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--accent) 45%, transparent);
+  outline-offset: 2px;
 }
 
 .primary-btn {
-  background: #2563eb;
+  background: linear-gradient(135deg, var(--accent), color-mix(in oklab, var(--accent) 65%, #1d4ed8));
   color: white;
   margin-top: 20px;
+  border-color: color-mix(in oklab, var(--accent) 65%, #1d4ed8);
 }
 
 .progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.9rem;
-  color: #6b7280;
+  color: var(--text);
+  background: color-mix(in oklab, var(--accent-bg) 65%, var(--bg));
+  border: 1px solid color-mix(in oklab, var(--accent-border) 70%, var(--border));
+  border-radius: 999px;
+  padding: 6px 12px;
 }
 
 .score-box {
   margin-top: 24px;
-  padding: 16px;
-  background: #f9fafb;
-  border-radius: 12px;
+  padding: 18px;
+  background: color-mix(in oklab, var(--accent-bg) 35%, var(--bg));
+  border: 1px solid color-mix(in oklab, var(--accent-border) 70%, var(--border));
+  border-radius: 16px;
+  text-align: left;
 }
 
 .score-box ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 6px 0 0;
+  display: grid;
+  gap: 8px;
 }
 
 .score-box li {
-  margin: 8px 0;
   font-size: 1rem;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--bg) 80%, var(--accent-bg));
+  border: 1px solid color-mix(in oklab, var(--border) 78%, var(--accent));
+}
+
+@media (max-width: 700px) {
+  .card {
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
 }
