@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import './App.css'
-import { quizQuestions, travelResults } from './quiz/quizData'
+import { quizQuestions, travelResults, travelStyleLabels } from './quiz/quizData'
 import { createInitialScores, getTopTravelStyle, updateScores, isQuizFinished } from './quiz/quizLogic'
 import type { ScoreMap, TravelStyle } from './quiz/quizTypes'
 
@@ -72,7 +72,7 @@ function App() {
             <h3>Score Breakdown</h3>
             <ul>
               {Object.entries(scores).map(([style, score]) => (
-                <li key={style}>{style}: {score}</li>
+                <li key={style}>{travelStyleLabels[style as TravelStyle]}: {score}</li>
               ))}
             </ul>
           </div>

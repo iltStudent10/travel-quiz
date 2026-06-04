@@ -1,4 +1,4 @@
-import type { QuizQuestion, TravelResult } from "./quizTypes";
+import type { QuizQuestion, TravelResult, TravelStyle } from "./quizTypes";
 
 export const quizQuestions: QuizQuestion[] = [
   {
@@ -78,4 +78,11 @@ export const travelResults: Record<string,TravelResult> = {
       title: "Weekend City Hopper",
       description: "You like fast-paced adventures, city energy, and packing as much as possible into your getaway.",
     },
+};
+
+export const travelStyleLabels: Record<TravelStyle, string> = {
+  "road-trip-adventurer": "Road Trip Adventurer",
+  "luxury-explorer": "Luxury Explorer",
+  "budget-backpacker": "Budget Backpacker",
+  "weekend-city-hopper": "Weekend City Hopper",
 };
