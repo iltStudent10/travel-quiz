@@ -28,8 +28,14 @@ function App() {
   }
 
   function handleAnswer(selectedStyle: TravelStyle): void {
-    setScores(currentScores => updateScores(currentScores, selectedStyle));
-    setCurrentQuestionIndex(currentIndex => currentIndex + 1);
+    try {
+      if (!selectedStyle) throw new Error('No travel style selected.');
+      setScores(currentScores => updateScores(currentScores, selectedStyle));
+      setCurrentQuestionIndex(currentIndex => currentIndex + 1);
+    } catch (error) {
+      console.error('Error handling answer:', error);
+      alert('An error occurred while saving your answer. Please try again.');
+    }
   }
 
   function handleRestart(): void {
