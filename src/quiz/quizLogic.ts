@@ -11,6 +11,9 @@ export function createInitialScores(): ScoreMap {
 
 export function getTopTravelStyle(scores: ScoreMap): TravelStyle {
     const entries = Object.entries(scores) as [TravelStyle, number][];
+    if (entries.length === 0) {
+        throw new Error("Unable to determine top travel style from empty scores.");
+    }
     return entries.sort((a, b) => b[1] - a[1])[0][0];
 }
 

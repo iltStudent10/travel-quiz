@@ -16,7 +16,12 @@ function App() {
 
   const topStyle = useMemo(() => {
     if (!isFinished) return null;
-    return getTopTravelStyle(scores);
+    try {
+      return getTopTravelStyle(scores);
+    } catch (error) {
+      console.error('Error getting top travel style:', error);
+      return null;
+    }
   }, [isFinished, scores]);
 
   const result = topStyle ? travelResults[topStyle] : null;
